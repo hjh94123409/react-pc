@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-import { getToken } from '@/utils'
+import { getToken, history } from '@/utils'
 
 const http = axios.create({
-    baseURL: 'http://localhost:1337/api/',
+    baseURL: 'http://geek.itheima.net/v1_0',
     timeout: 5000,
 })
 
@@ -14,7 +14,6 @@ http.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`
         }
-
         return config
     },
     (error) => {
@@ -28,6 +27,11 @@ http.interceptors.response.use(
         return response
     },
     (error) => {
+        console.dir(error)
+        if (error.response.status === 401) {
+            //跳回到登录
+            history.push('/login')
+        }
         return Promise.reject(error)
     }
 )

@@ -9,9 +9,9 @@ const Login = () => {
     const navigate = useNavigate()
     const onFinish = async (values) => {
         try {
-            await loginStore.getToken({
-                identifier: values.username,
-                password: values.password,
+            await loginStore.loginIn({
+                mobile: values.username,
+                code: values.password,
             })
             //登录成功跳转到首页
             navigate('/', { replace: true })

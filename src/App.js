@@ -1,18 +1,22 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
-
+import {
+    // BrowserRouter,
+    Route,
+    Routes,
+    unstable_HistoryRouter as HistoryRouter,
+} from 'react-router-dom'
+import './App.css'
 import Layout from './pages/Layout'
-
 import Login from '@/pages/Login'
 import AuthComponent from './components/AuthComponent'
+import Home from './pages/Home'
+import Publish from './pages/Publish'
+import Article from './pages/Article'
+import { history } from '@/utils'
 
 function App() {
     return (
-        <BrowserRouter>
+        <HistoryRouter history={history}>
             <div className="App">
-                <Link to="/">首页</Link>
-                <Link to="/login">登录页</Link>
-                <hr />
-
                 <Routes>
                     <Route
                         path="/"
@@ -21,11 +25,15 @@ function App() {
                                 <Layout />
                             </AuthComponent>
                         }
-                    />
+                    >
+                        <Route index element={<Home />} />
+                        <Route path="publish" element={<Publish />} />
+                        <Route path="article" element={<Article />} />
+                    </Route>
                     <Route path="/login" element={<Login />} />
                 </Routes>
             </div>
-        </BrowserRouter>
+        </HistoryRouter>
     )
 }
 
