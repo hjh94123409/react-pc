@@ -8,7 +8,7 @@ class ChannelStore {
     loadChannelList = async () => {
         const res = await http.get('/channels')
         runInAction(() => {
-            this.channelList = res.data.data.channels
+            this.channelList = res.data.channels
         })
 
         // console.log(res)

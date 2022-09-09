@@ -42,7 +42,7 @@ const Article = () => {
             const res = await http.get('/mp/articles', { params })
             // console.log('params改变了', res)
 
-            const { results, total_count } = res.data.data
+            const { results, total_count } = res.data
 
             setArticles({
                 list: results,
@@ -162,7 +162,7 @@ const Article = () => {
             params.begin_pubdate = date[0].format('YYYY-MM-DD')
             params.end_pubdate = date[1].format('YYYY-MM-DD')
         }
-
+        // console.log(params, values)
         setParams(params)
     }
 

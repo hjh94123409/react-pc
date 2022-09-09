@@ -8,18 +8,18 @@ class LoginStore {
         makeAutoObservable(this)
     }
     loginIn = async ({ mobile, code }) => {
-        console.log(mobile, code)
+        // console.log(mobile, code)
         const res = await http.post('/authorizations', {
             mobile,
             code,
         })
         //  13811111111
         //  246810
-        // console.log(res.data.data.token)
+        console.log(res.data.token)
         //存入token
-        this.token = res.data.data.token
+        this.token = res.data.token
         //存入 localStorage
-        setToken(res.data.data.token)
+        setToken(res.data.token)
     }
     loginOut = () => {
         this.token = ''
